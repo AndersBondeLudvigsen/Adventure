@@ -1,36 +1,29 @@
-/*public class Adventure {
-    private Adventure currentRoom;
-    private String room;
-    private String description;
+public class Adventure {
+    private Room currentRoom;
 
 
-    public Adventure (String room , String description ){
-        this.room = room;
-        this.description = description;
+    public Adventure() {
     }
+
+
     public void buildRoom() {
-        Adventure room5 = new Room("Room 5"," A derelict tailor's workshop, covered in cobwebs");
-        //
-        Adventure room8 = new Room("Room 8");
-        //
-        room5.setSouth(room8);
-
-
-
+        this.currentRoom = new Room("Room 5",
+            " A derelict tailor's workshop, covered in cobwebs");
 
 
     }
-
-public void moveSouth(Room southRoom){
+public void look(){
+    System.out.println("You are standing in " + currentRoom.getRoomName()+ currentRoom.getDescription());
+}
+/*public void moveSouth(Room southRoom){
 if (room.equals("mother")) {
             current = current.getMother();
         } else {
             current = current.getFather();
-        }
+        }*/
 
 
 }
 
 
-}
-*/
+
