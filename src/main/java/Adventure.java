@@ -15,12 +15,12 @@ public class Adventure {
 public void look(){
     System.out.println("You are standing in " + currentRoom.getRoomName()+ currentRoom.getDescription());
 }
-/*public void moveSouth(Room southRoom){
-if (room.equals("mother")) {
-            current = current.getMother();
+public void moveSouth(Room southRoom){
+if (currentRoom.equals(southRoom)) {
+            currentRoom = currentRoom.getSouthRoom();
         } else {
-            current = current.getFather();
-        }*/
+            currentRoom = currentRoom.getSouthRoom();
+        }
 
 
 }
