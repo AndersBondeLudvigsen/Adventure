@@ -11,7 +11,7 @@ public class Main {
         String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
         // Fjerner mellemrum og go hvis det bliver skrevet
         String Input = userInput.replace("go", "").trim();
-
+            System.out.println("hej");
 
             switch (Input) {
                 case "north", "n" -> System.out.println("Going North");
