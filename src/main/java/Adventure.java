@@ -96,7 +96,7 @@ public class Adventure {
             }
 
         }
-    }
+
 
     // metoden for hvis man skal bruge hjælp
     public void help() {
