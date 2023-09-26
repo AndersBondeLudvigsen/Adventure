@@ -24,6 +24,7 @@ public class Room {
         this.westRoom = null;
     }
 
+    // Getters og Setters
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
     }
