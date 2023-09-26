@@ -57,11 +57,15 @@ public class Adventure {
         public void moveNorth (Room northRoom){
             if (northRoom == null) {
                  System.out.println("There is no room to the north.");
-            } else if (currentRoom != northRoom) {
+            } else if (!currentRoom.isVisited()) {
+                System.out.println(currentRoom.getDescription());
+            } if (currentRoom != northRoom) {
                 currentRoom = currentRoom.getNorthRoom();
                 System.out.println("You delve deeper into the keep");
+                currentRoom.setIsVisited(true);
+                }
             }
-        }
+
         public void moveEast (Room eastRoom){
             if (currentRoom.getEastRoom() == null) {
                 System.out.println("There is no room to the east.");
@@ -91,15 +95,16 @@ public class Adventure {
                 System.out.println(currentRoom.getDescription());
             }
 
-
+            }
         }
+
         // metoden for hvis man skal bruge hjælp
     public  void help (){
         System.out.println("You are standing in " + currentRoom.getRoomName());
         System.out.println("You can move in 4 directions");
         System.out.println("North, South, East, West");
         System.out.println("You can 'look' around to see which directions you may move to");
-        System.out.println("If you want to exit the game press (9)");
+        System.out.println("Type exit to exit the game");
     }
     public void play(){
         Scanner keyboard = new Scanner(System.in);

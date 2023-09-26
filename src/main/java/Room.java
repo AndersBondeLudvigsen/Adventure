@@ -53,5 +53,7 @@ public class Room {
         return westRoom;
     }
 
-
+    public void setIsVisited(boolean isVisited) {
+        this.isVisited = isVisited;
+    }
 }
