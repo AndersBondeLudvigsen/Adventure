@@ -4,8 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Adventure adventure = new Adventure();
         Scanner keyboard = new Scanner(System.in);
+        Room currentroom = adventure.currentRoom;
         boolean exit = false;
-        adventure.buildRoom();
         while (!exit) {
 
         String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
@@ -17,7 +17,10 @@ public class Main {
                 case "north", "n" -> System.out.println("Going North");
                 case "south", "s" -> System.out.println("Going South");
                 case "west", "w" -> System.out.println("Going West");
-                case "east", "e" -> System.out.println("Going East");
+                case "east", "e" -> {
+                    adventure.moveEast(adventure.currentRoom.getEastRoom());
+                    System.out.println("Going East");
+                }
                 case "look" -> adventure.look();
                 case "exit" -> exit= true;
                 default -> System.out.println("Unknown input");

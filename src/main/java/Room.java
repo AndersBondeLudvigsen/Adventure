@@ -18,21 +18,25 @@ public class Room {
     public Room(String roomName, String description) {
         this.roomName = roomName;
         this.description = description;
+        this.northRoom = null;
+        this.eastRoom = null;
+        this.southRoom = null;
+        this.westRoom = null;
     }
 
-    public void setNorthRoom(Room room) {
+    public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
     }
 
-    public void setEastRoom(Room room) {
+    public void setEastRoom(Room eastRoom) {
         this.eastRoom = eastRoom;
     }
 
-    public void setSouthRoom(Room room) {
+    public void setSouthRoom(Room southRoom) {
         this.southRoom = southRoom;
     }
 
-    public void setWestRoom(Room room) {
+    public void setWestRoom(Room westRoom) {
         this.westRoom = westRoom;
     }
     public Room getNorthRoom(){
