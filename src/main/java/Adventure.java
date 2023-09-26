@@ -95,42 +95,52 @@ public class Adventure {
                 System.out.println(currentRoom.getDescription());
             }
 
-            }
         }
+    }
 
-        // metoden for hvis man skal bruge hjælp
-    public  void help (){
+    // metoden for hvis man skal bruge hjælp
+    public void help() {
         System.out.println("You are standing in " + currentRoom.getRoomName());
-        System.out.println("You can move in 4 directions");
+        System.out.println("In this game you can move in 4 directions");
         System.out.println("North, South, East, West");
-        System.out.println("You can 'look' around to see which directions you may move to");
+        System.out.println("Type 'look around to to see which directions you may move to");
         System.out.println("Type exit to exit the game");
     }
-    public void play(){
+
+    public void play() {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
         System.out.println("Welcome to game you are standing in " + currentRoom.getRoomName());
+        System.out.println("Start by going south or east ");
+        System.out.println("Type help for help");
         while (!exit) {
             String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
             // Fjerner mellemrum og go hvis det bliver skrevet
             String Input = userInput.replace("go", "").replace("around", "").trim();
             switch (Input) {
-                case "north", "n" -> {moveNorth(currentRoom.getNorthRoom());
+                case "north", "n" -> {
                     System.out.println("Going North");
+                    moveNorth(currentRoom.getNorthRoom());
+
                 }
-                case "south", "s" -> {moveSouth(currentRoom.getSouthRoom());
+                case "south", "s" -> {
                     System.out.println("Going South");
+                    moveSouth(currentRoom.getSouthRoom());
+
                 }
-                case "west", "w" -> {moveWest(currentRoom.getWestRoom());
+                case "west", "w" -> {
                     System.out.println("Going West");
+                    moveWest(currentRoom.getWestRoom());
+
                 }
                 case "east", "e" -> {
-                    moveEast(currentRoom.getEastRoom());
                     System.out.println("Going East");
+                    moveEast(currentRoom.getEastRoom());
+
                 }
-                case "look" , "look around" -> look();
+                case "look", "look around" -> look();
                 case "help" -> help();
-                case "exit" -> exit= true;
+                case "exit" -> exit = true;
                 default -> System.out.println("Unknown input");
 
             }
@@ -139,10 +149,11 @@ public class Adventure {
         }
 
     }
-    public Room getCurrentRoom(){
-        return  currentRoom;
+
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
-    }
+}
 
 
 
