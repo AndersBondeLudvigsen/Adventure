@@ -1,19 +1,12 @@
 public class Room {
 
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     private String roomName;
     private String description;
     private Room northRoom;
     private Room eastRoom;
     private Room southRoom;
     private Room westRoom;
+    private boolean isVisited;
 
     public Room(String roomName, String description) {
         this.roomName = roomName;
@@ -22,8 +15,14 @@ public class Room {
         this.eastRoom = null;
         this.southRoom = null;
         this.westRoom = null;
+        this.isVisited = false;
     }
-
+    public String getRoomName() {
+        return roomName;
+    }
+    public String getDescription() {
+        return description;
+    }
     // Getters og Setters
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
@@ -58,6 +57,10 @@ public class Room {
     }
 
     public void setIsVisited(boolean isVisited) {
-        this.isVisited = isVisited;
+        this.isVisited = true;
+    }
+
+    public boolean isVisited() {
+        return false;
     }
 }

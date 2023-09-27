@@ -21,7 +21,6 @@ public class Adventure {
 
         room1.setEastRoom(room2);
         room1.setSouthRoom(room4);
-        room1.setNorthRoom(null);
         //
         room2.setEastRoom(room3);
         room2.setWestRoom(room1);
@@ -53,49 +52,68 @@ public class Adventure {
             public void look() {
             System.out.println("You are standing in " + currentRoom.getRoomName() + currentRoom.getDescription());
         }
-        // metoder for når man rykker sig
-        public void moveNorth (Room northRoom){
-            if (northRoom == null) {
-                 System.out.println("There is no room to the north.");
-            } else if (!currentRoom.isVisited()) {
-                System.out.println(currentRoom.getDescription());
-            } if (currentRoom != northRoom) {
-                currentRoom = currentRoom.getNorthRoom();
-                System.out.println("You delve deeper into the keep");
-                currentRoom.setIsVisited(true);
-                }
-            }
-
-        public void moveEast (Room eastRoom){
-            if (currentRoom.getEastRoom() == null) {
-                System.out.println("There is no room to the east.");
-            } else if (currentRoom != eastRoom) {
-                currentRoom = currentRoom.getEastRoom();
-                System.out.println("You delve deeper into the keep");
-                System.out.println(currentRoom.getDescription());
-            }
+    public void moveNorth(Room northRoom) {
+        if (currentRoom != northRoom && northRoom == null) {
+            System.out.println("There is no room to the north.");
+        } else if (!currentRoom.getNorthRoom().isVisited()) {
+            System.out.println(currentRoom.getDescription());
+            currentRoom = currentRoom.getNorthRoom();
         }
-        public void moveSouth (Room southRoom){
-            if (southRoom == null) {
-                System.out.println("There is no room to the south.");
-            } else if (currentRoom != southRoom) {
-                currentRoom = currentRoom.getSouthRoom();
-                System.out.println("You delve deeper into the keep");
-                System.out.println(currentRoom.getDescription());
-            }
+        else if (currentRoom != currentRoom.getNorthRoom()) {
+            currentRoom = currentRoom.getNorthRoom();
+            System.out.println("You delve deeper into the keep");
+            System.out.println(currentRoom.getDescription());
+            currentRoom.setIsVisited(true);
+        }
+    }
+
+    public void moveEast(Room eastRoom) {
+        if (currentRoom != eastRoom && eastRoom == null) {
+            System.out.println("There is no room to the east.");
+        } else if (!currentRoom.getEastRoom().isVisited()) {
+            System.out.println(currentRoom.getDescription());
+            currentRoom = currentRoom.getEastRoom();
+        }
+        else if (currentRoom != currentRoom.getEastRoom()) {
+            currentRoom = currentRoom.getEastRoom();
+            System.out.println("You delve deeper into the keep");
+            System.out.println(currentRoom.getDescription());
+            currentRoom.setIsVisited(true);
+        }
+    }
+
+    public void moveSouth(Room southRoom) {
+        if (currentRoom != southRoom && southRoom == null) {
+            System.out.println("There is no room to the south.");
+        } else if (!currentRoom.getSouthRoom().isVisited()) {
+            System.out.println(currentRoom.getDescription());
+            currentRoom = currentRoom.getSouthRoom();
+        }
+        else if (currentRoom != southRoom) {
+            currentRoom = currentRoom.getSouthRoom();
+            System.out.println("You delve deeper into the keep");
+            System.out.println(currentRoom.getDescription());
+            currentRoom.setIsVisited(true);
+        }
+    }
+
+    public void moveWest(Room westRoom) {
+        if (currentRoom != westRoom && westRoom == null) {
+            System.out.println("There is no room to the west.");
+        } else if (!currentRoom.getWestRoom().isVisited()) {
+            System.out.println(currentRoom.getDescription());
+            currentRoom = currentRoom.getWestRoom();
+        }
+        else if (currentRoom != westRoom) {
+            currentRoom = currentRoom.getWestRoom();
+            System.out.println("You delve deeper into the keep");
+            System.out.println(currentRoom.getDescription());
+            currentRoom.setIsVisited(true);
         }
 
+    }
 
-        public void moveWest (Room westRoom){
-            if (westRoom == null) {
-                System.out.println("There is no room to the west.");
-            } else if (currentRoom != westRoom) {
-                currentRoom = currentRoom.getWestRoom();
-                System.out.println("You delve deeper into the keep");
-                System.out.println(currentRoom.getDescription());
-            }
 
-        }
 
 
     // metoden for hvis man skal bruge hjælp
