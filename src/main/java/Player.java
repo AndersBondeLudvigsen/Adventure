@@ -65,40 +65,6 @@ public class Player {
 
 
     }
-
-    public void move(String direction) {
-        Room nextRoom = null;
-
-        switch (direction) {
-            case "north":
-                nextRoom = map.currentRoom.getNorthRoom();
-                break;
-            case "east":
-                nextRoom = map.currentRoom.getEastRoom();
-                break;
-            case "south":
-                nextRoom = map.currentRoom.getSouthRoom();
-                break;
-            case "west":
-                nextRoom = map.currentRoom.getWestRoom();
-                break;
-            default:
-                System.out.println("Invalid direction.");
-                return;
-        }
-
-        if (nextRoom == null) {
-            System.out.println("There is no room to the " + direction + ".");
-        } else if (!nextRoom.isVisited()) {
-            System.out.println(map.currentRoom.getDescription());
-            map.currentRoom = nextRoom;
-        } else if (map.currentRoom != nextRoom) {
-            map.currentRoom = nextRoom;
-            System.out.println("You delve deeper into the keep");
-            System.out.println(map.currentRoom.getDescription());
-            nextRoom.setIsVisited(true);
-        }
-    }
-
+    
 }
 
