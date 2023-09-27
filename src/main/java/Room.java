@@ -20,6 +20,9 @@ public class Room {
     public String getRoomName() {
         return roomName;
     }
+    public String getRoomName() {
+        return roomName;
+    }
     public String getDescription() {
         return description;
     }
