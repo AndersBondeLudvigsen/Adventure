@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Userinterface {
+    Player player = new Player();
     Adventure adventure = new Adventure();
     Map map = new Map();
     public void play() {
@@ -21,17 +22,17 @@ public class Userinterface {
                 }
                 case "south", "s" -> {
                     System.out.println("Going South");
-                    adventure.moveSouth(map.currentRoom.getSouthRoom());
+                    player.moveSouth(map.currentRoom.getSouthRoom());
 
                 }
                 case "west", "w" -> {
                     System.out.println("Going West");
-                   adventure.moveWest(map.currentRoom.getWestRoom());
+                   player.moveWest(map.currentRoom.getWestRoom());
 
                 }
                 case "east", "e" -> {
                     System.out.println("Going East");
-                    adventure.moveEast(map.currentRoom.getEastRoom());
+                    player.moveEast(map.currentRoom.getEastRoom());
 
                 }
                 case "look", "look around" -> look();
@@ -47,7 +48,7 @@ public class Userinterface {
     }
     // metoden for hvis man skal bruge hjælp
     public void help() {
-        System.out.println("You are standing in " + map.currentRoom.getRoomName());
+        System.out.println("You are standing in " + map.getCurrentRoom().getRoomName());
         System.out.println("In this game you can move in 4 directions");
         System.out.println("North, South, East, West");
         System.out.println("Type 'look around to to see which directions you may move to");
@@ -56,6 +57,7 @@ public class Userinterface {
 
     // look funtionen
     public void look() {
-        System.out.println("You are standing in " + map.currentRoom.getRoomName() + map.currentRoom.getDescription());
+        Room currentRoom = map.getCurrentRoom();
+        System.out.println("You are standing in " + currentRoom.getRoomName() + currentRoom.getDescription());
     }
 }

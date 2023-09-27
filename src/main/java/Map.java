@@ -43,6 +43,10 @@ public class Map {
         room9.setNorthRoom(room6);
         room9.setWestRoom(room8);
 
-        currentRoom = room1;
+
     }
+    public Room getCurrentRoom(){
+        return currentRoom;
+    }
+
 }

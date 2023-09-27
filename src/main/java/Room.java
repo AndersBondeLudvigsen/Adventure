@@ -20,12 +20,15 @@ public class Room {
     public String getRoomName() {
         return roomName;
     }
+
     public String getRoomName() {
         return roomName;
     }
+
     public String getDescription() {
         return description;
     }
+
     // Getters og Setters
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
@@ -60,10 +63,10 @@ public class Room {
     }
 
     public void setIsVisited(boolean isVisited) {
-        this.isVisited = true;
+        this.isVisited = false;
     }
 
     public boolean isVisited() {
-        return false;
+        return true;
     }
 }
