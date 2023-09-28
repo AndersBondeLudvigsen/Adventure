@@ -3,8 +3,6 @@
 public class Adventure {
 private Player player = new Player();
     Map map = new Map();
-
-
     public void moveNorth(Room northRoom) {
         if (map.currentRoom.getNorthRoom() == null) {
             System.out.println("There is no room to the north.");
