@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class Adventure {
 private Player player = new Player();
@@ -68,7 +68,6 @@ private Player player = new Player();
             map.currentRoom = map.currentRoom.getWestRoom();
             System.out.println("You delve deeper into the keep");
             System.out.println(map.currentRoom.getDescription());
-            player.setPlayerPostion(map.getCurrentRoom());
             map.currentRoom.setIsVisited(true);
         }
     }
