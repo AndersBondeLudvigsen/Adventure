@@ -69,4 +69,7 @@ public class Room {
     public boolean isVisited() {
         return true;
     }
+    public String toString(){
+        return roomName;
+    }
 }

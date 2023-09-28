@@ -1,6 +1,6 @@
 public class Map {
-    public Room currentRoom;
-
+    public static Room currentRoom;
+    private Player player;
     public Map() {
 
         // Laver 8 rooms

@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Userinterface {
-    Player player = new Player();
     Adventure adventure = new Adventure();
     Map map = new Map();
     public void play() {
@@ -22,17 +21,17 @@ public class Userinterface {
                 }
                 case "south", "s" -> {
                     System.out.println("Going South");
-                    player.moveSouth(map.currentRoom.getSouthRoom());
+                    adventure.moveSouth(map.currentRoom.getSouthRoom());
 
                 }
                 case "west", "w" -> {
                     System.out.println("Going West");
-                   player.moveWest(map.currentRoom.getWestRoom());
+                   adventure.moveWest(map.currentRoom.getWestRoom());
 
                 }
                 case "east", "e" -> {
                     System.out.println("Going East");
-                    player.moveEast(map.currentRoom.getEastRoom());
+                    adventure.moveEast(map.currentRoom.getEastRoom());
 
                 }
                 case "look", "look around" -> look();
@@ -58,6 +57,6 @@ public class Userinterface {
     // look funtionen
     public void look() {
         Room currentRoom = map.getCurrentRoom();
-        System.out.println("You are standing in " + currentRoom.getRoomName() + currentRoom.getDescription());
+        System.out.println("You are standing in " + adventure.getPlayer().getPlayerPostion() + currentRoom.getDescription());
     }
 }
