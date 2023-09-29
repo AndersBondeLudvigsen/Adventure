@@ -20,7 +20,6 @@ public class Userinterface {
                 case "north", "n" -> {
                     System.out.println("Going North");
                     adventure.moveNorth(map.currentRoom.getNorthRoom());
-
                 }
                 case "south", "s" -> {
                     System.out.println("Going South");

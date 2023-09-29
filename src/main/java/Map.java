@@ -56,6 +56,8 @@ public class Map {
         room9.setNorthRoom(room6);
         room9.setWestRoom(room8);
 
+        currentRoom = room1;
+
 
     }
 

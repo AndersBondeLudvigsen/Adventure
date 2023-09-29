@@ -65,11 +65,6 @@ public class Adventure {
             player.setPlayerPostion(map.getCurrentRoom());
         }
     }
-
-    public Player getPlayer() {
-        return player;
-    }
-
 }
 
 

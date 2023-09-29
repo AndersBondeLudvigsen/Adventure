@@ -13,10 +13,6 @@ public class Player {
         this.playerPostion = playerPostion;
     }
 
-    public Room getPlayerPostion() {
-        return playerPostion;
-    }
-
     public Player() {
         itemArrayList = new ArrayList<>();
     }

@@ -8,8 +8,8 @@ public class Room {
     private Room eastRoom;
     private Room southRoom;
     private Room westRoom;
-    private boolean isVisited;
     private ArrayList<Item> itemArrayList = new ArrayList<>();
+
 
     public Room(String roomName, String description) {
         this.roomName = roomName;
@@ -18,10 +18,6 @@ public class Room {
         this.eastRoom = null;
         this.southRoom = null;
         this.westRoom = null;
-        this.isVisited = false;
-    }
-    public String getRoomName() {
-        return roomName;
     }
 
     public String getRoomName() {
@@ -65,14 +61,6 @@ public class Room {
         return westRoom;
     }
 
-    public void setIsVisited(boolean isVisited) {
-        this.isVisited = false;
-    }
-
-    public boolean isVisited() {
-        return true;
-    }
-
     public String toString() {
         return roomName;
     }
@@ -81,16 +69,6 @@ public class Room {
         Item item = new Item(itemName, itemDecription);
         itemArrayList.add(item);
     }
-
-    public void setItemArrayList(ArrayList<Item> itemlist) {
-        this.itemArrayList = itemlist;
-    }
-
-    public void createItem(String itemName, String itemDecription) {
-        Item item = new Item(itemName, itemDecription);
-        itemArrayList.add(item);
-    }
-
     public ArrayList<Item> getItems() {
         return itemArrayList;
     }
