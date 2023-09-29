@@ -6,7 +6,6 @@ public class Player {
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private ArrayList<Item> roomItems = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
-
     private ArrayList<Item> itemArrayList;
     private Room playerPostion;
 
@@ -47,34 +46,35 @@ public class Player {
             currentroom.getItems().remove(toRemove);
         }
     }
-        //Method to leave an item in the room
+    //Method to leave an item in the room
 
-        public void leaveItem (Room currentroom){
-            System.out.println("What item would you like to drop");
-            getInventoryList();
-            String item = keyboard.nextLine();
-            Item toRemove = null;
-            for (Item i : inventoryList) {
-                System.out.println(i.getItemName());
-                if (i.getItemName().contains(item)) {
-                    System.out.println("You left " + i.getItemName() + " in the room.");
-                    toRemove = i;
-                } else {
-                    System.out.println("You don't have that item in your inventory.");
-                }
+    public void leaveItem(Room currentroom) {
+        System.out.println("What item would you like to drop");
+        getInventoryList();
+        String item = keyboard.nextLine();
+        Item toRemove = null;
+        for (Item i : inventoryList) {
+            System.out.println(i.getItemName());
+            if (i.getItemName().contains(item)) {
+                System.out.println("You left " + i.getItemName() + " in the room.");
+                toRemove = i;
+            } else {
+                System.out.println("You don't have that item in your inventory.");
             }
-            if (toRemove != null){
-                currentroom.addItem(toRemove.getItemName(),toRemove.getItemDescription());
-                inventoryList.remove(toRemove);
-            }
-
         }
-        public void getInventoryList () {
-        for (Item i : inventoryList){
+        if (toRemove != null) {
+            currentroom.addItem(toRemove.getItemName(), toRemove.getItemDescription());
+            inventoryList.remove(toRemove);
+        }
+
+    }
+
+    public void getInventoryList() {
+        for (Item i : inventoryList) {
             System.out.println(i.getItemName());
         }
-        }
     }
+}
 
 
 

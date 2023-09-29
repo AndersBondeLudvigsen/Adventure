@@ -39,7 +39,7 @@ public class Userinterface {
                 }
                 case "take" -> player.pickUpItem(map.getCurrentRoom());
                 case "drop" -> player.leaveItem(map.getCurrentRoom());
-                case "inventorylist" -> player.getInventoryList();
+                case "inventory" -> player.getInventoryList();
                 case "look", "look around" -> look();
                 case "help" -> help();
                 case "exit" -> exit = true;
@@ -64,6 +64,6 @@ public class Userinterface {
     // look funtionen
     public void look() {
         Room currentRoom = map.getCurrentRoom();
-        System.out.println("You are standing in " + adventure.getPlayer().getPlayerPostion() + currentRoom.getDescription());
+        System.out.println("You are standing in " + currentRoom + currentRoom.getDescription());
     }
 }
