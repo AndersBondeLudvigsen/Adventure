@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Map {
     public static Room currentRoom;
-    private Player player;
 
     public Map() {
 

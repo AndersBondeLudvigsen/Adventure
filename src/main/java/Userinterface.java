@@ -4,7 +4,6 @@ public class Userinterface {
     Adventure adventure = new Adventure();
     Map map = new Map();
     Player player = new Player();
-    Item item = new Item("itemName", "itemDecription");
 
     public void play() {
         Scanner keyboard = new Scanner(System.in);
