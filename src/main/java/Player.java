@@ -20,7 +20,7 @@ public class Player {
     // Method to pick up an item from the room
     public void pickUpItem(Room currentroom) {
         System.out.println("What would you like to pick up");
-        String item = keyboard.nextLine();
+        String item = keyboard.nextLine().toLowerCase();
         Item toRemove = null;
         for (Item i : currentroom.getItems()) {
             System.out.println(i.getItemName());
@@ -40,8 +40,8 @@ public class Player {
 
     public void leaveItem(Room currentroom) {
         System.out.println("What item would you like to drop");
-        getInventoryList();
-        String item = keyboard.nextLine();
+        showInventory();
+        String item = keyboard.nextLine().toLowerCase();
         Item toRemove = null;
         for (Item i : inventoryList) {
             System.out.println(i.getItemName());
@@ -58,12 +58,23 @@ public class Player {
         }
 
     }
-
-    public void getInventoryList() {
-        for (Item i : inventoryList) {
-            System.out.println(i.getItemName());
+    public void showInventory() {
+        ArrayList<Item> playerInventory = getInventory();
+        if (!playerInventory.isEmpty()) {
+            System.out.println("Your inventory:");
+            for (Item item : playerInventory) {
+                System.out.println(item.getItemName() + " ");
+            }
+        } else {
+            System.out.println("Your inventory is empty.");
         }
     }
+
+    private ArrayList<Item> getInventory() {
+        return inventoryList;
+    }
+
+
 }
 
 

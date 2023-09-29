@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
 public class Adventure {
-    private Player player = new Player();
+    Player player = new Player();
     Map map = new Map();
 
-    public void moveNorth(Room northRoom) {
+    public void moveNorth() {
         if (map.currentRoom.getNorthRoom() == null) {
             System.out.println("There is no room to the north.");
         } else {
@@ -20,7 +20,7 @@ public class Adventure {
         }
     }
 
-    public void moveEast(Room eastRoom) {
+    public void moveEast() {
         if (map.currentRoom.getEastRoom() == null) {
             System.out.println("There is no room to the east.");
         } else {
@@ -36,7 +36,7 @@ public class Adventure {
     }
 
 
-    public void moveSouth(Room southRoom) {
+    public void moveSouth() {
         if (map.currentRoom.getSouthRoom() == null) {
             System.out.println("There is no room to the south.");
         } else {
@@ -51,7 +51,7 @@ public class Adventure {
         }
     }
 
-    public void moveWest(Room westRoom) {
+    public void moveWest() {
         if (map.currentRoom.getWestRoom() == null) {
             System.out.println("There is no room to the west.");
         } else {
@@ -64,6 +64,12 @@ public class Adventure {
             }
             player.setPlayerPostion(map.getCurrentRoom());
         }
+    }
+    public void pickUpItem(){
+        player.pickUpItem(map.getCurrentRoom());
+    }
+    public void dropItem(){
+        player.leaveItem(map.getCurrentRoom());
     }
 }
 

@@ -1,14 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Userinterface {
     Adventure adventure = new Adventure();
-    Map map = new Map();
-    Player player = new Player();
 
     public void play() {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
-        System.out.println("Welcome to game you are standing in " + map.currentRoom.getRoomName());
+        System.out.println("Welcome to game you are standing in " + adventure.map.getCurrentRoom());
         System.out.println("Start by going south or east ");
         System.out.println("Type help for help");
         while (!exit) {
@@ -18,26 +17,26 @@ public class Userinterface {
             switch (Input) {
                 case "north", "n" -> {
                     System.out.println("Going North");
-                    adventure.moveNorth(map.currentRoom.getNorthRoom());
+                    adventure.moveNorth();
                 }
                 case "south", "s" -> {
                     System.out.println("Going South");
-                    adventure.moveSouth(map.currentRoom.getSouthRoom());
+                    adventure.moveSouth();
 
                 }
                 case "west", "w" -> {
                     System.out.println("Going West");
-                    adventure.moveWest(map.currentRoom.getWestRoom());
+                    adventure.moveWest();
 
                 }
                 case "east", "e" -> {
                     System.out.println("Going East");
-                    adventure.moveEast(map.currentRoom.getEastRoom());
+                    adventure.moveEast();
 
                 }
-                case "take" -> player.pickUpItem(map.getCurrentRoom());
-                case "drop" -> player.leaveItem(map.getCurrentRoom());
-                case "inventory" -> player.getInventoryList();
+                case "take" -> adventure.pickUpItem();
+                case "drop" -> adventure.dropItem();
+                case "inventory" -> adventure.player.showInventory();
                 case "look", "look around" -> look();
                 case "help" -> help();
                 case "exit" -> exit = true;
@@ -52,16 +51,17 @@ public class Userinterface {
 
     // metoden for hvis man skal bruge hjælp
     public void help() {
-        System.out.println("You are standing in " + map.getCurrentRoom().getRoomName());
+        System.out.println("You are standing in " + adventure.map.getCurrentRoom());
         System.out.println("In this game you can move in 4 directions");
         System.out.println("North, South, East, West");
         System.out.println("Type 'look around to to see which directions you may move to");
         System.out.println("Type exit to exit the game");
+        System.out.println("Type 'inventory' to see your items");
     }
 
     // look funtionen
     public void look() {
-        Room currentRoom = map.getCurrentRoom();
-        System.out.println("You are standing in " + currentRoom + currentRoom.getDescription());
+
+        System.out.println("You are standing in " + adventure.map.getCurrentRoom() + adventure.map.currentRoom.getDescription());
     }
 }
