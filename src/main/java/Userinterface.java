@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class Userinterface {
     Adventure adventure = new Adventure();
     Map map = new Map();
+    Player player = new Player();
+    Item item = new Item("itemName", "itemDecription");
+
     public void play() {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
@@ -12,7 +15,7 @@ public class Userinterface {
         while (!exit) {
             String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
             // Fjerner mellemrum og go hvis det bliver skrevet
-            String Input = userInput.replace("go", "").replace("around", "").trim();
+            String Input = userInput.replace("go", "").replace("around", "").replace("item", "").trim();
             switch (Input) {
                 case "north", "n" -> {
                     System.out.println("Going North");
@@ -26,7 +29,7 @@ public class Userinterface {
                 }
                 case "west", "w" -> {
                     System.out.println("Going West");
-                   adventure.moveWest(map.currentRoom.getWestRoom());
+                    adventure.moveWest(map.currentRoom.getWestRoom());
 
                 }
                 case "east", "e" -> {
@@ -34,6 +37,9 @@ public class Userinterface {
                     adventure.moveEast(map.currentRoom.getEastRoom());
 
                 }
+                case "take" -> player.pickUpItem(map.getCurrentRoom());
+                case "drop" -> player.leaveItem(map.getCurrentRoom());
+                case "inventorylist" -> System.out.println(player.getInventoryList());
                 case "look", "look around" -> look();
                 case "help" -> help();
                 case "exit" -> exit = true;
@@ -45,6 +51,7 @@ public class Userinterface {
         }
 
     }
+
     // metoden for hvis man skal bruge hjælp
     public void help() {
         System.out.println("You are standing in " + map.getCurrentRoom().getRoomName());

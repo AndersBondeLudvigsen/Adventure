@@ -1,20 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Map {
     public static Room currentRoom;
     private Player player;
+
     public Map() {
 
         // Laver 9 rooms
         Room room1 = new Room("Room 1 - the Entry Hall\n", "A grand chamber with faded tapestries that once depicted heroic battles.\nThe once-marble floor is now cracked and worn, and a chandelier hangs precariously from the ceiling.\n");
+        room1.addItem(" Shield ", "Basic wooden shield for blocking attacks in your adventure.");
         Room room2 = new Room("Room 2 - Hallway of Echoes\n", "A long, narrow corridor lined with dusty suits of armor that stand like silent sentinels.\nTorches, long extinguished, still line the walls, casting eerie shadows.\n");
+        room2.addItem(" Dagger ", " A worn dagger suitable for close combat in dark dungeons.");
         Room room3 = new Room("Room 3 - Forgotten Smithy\n", "A blacksmith's workshop, filled with rusted tools and broken anvils.\nThe air is thick with the scent of old metalwork, and the forge lies cold and lifeless.\n");
+        room3.addItem("Potion", "a vital resource on your perilous journey.");
         Room room4 = new Room("Room 4 - Guard Room of Yore\n", "The remains of a guard room, with ancient weapons rusting on the racks.\nFaded banners hang from the walls, bearing the insignia of a long-lost kingdom.\n");
+        room4.addItem(" Backpack ", "Sturdy pack to carry provisions and equipment for your travels.");
         Room room5 = new Room("Room 5 - Throne Room of Decay\n", "A decaying chamber where a tarnished throne sits atop a dais.\nTattered banners hang from the walls, and the ceiling is adorned with faded frescoes.\n");
+        room5.addItem("Torch ", "Illuminates your path in dimly lit caves and mysterious forests.");
         Room room6 = new Room("Room 6 - Shrine of the Forgotten Gods\n", "An ornate room dedicated to long-forgotten deities.\nBroken statues lie toppled on the floor, and the once-sacred altar is now covered in spiderwebs.\n");
+        room6.addItem("Armor", "Light armor for protection during encounters with menacing foes.");
         Room room7 = new Room("Room 7 - Macabre Art Room\n", "A chilling gallery displaying gruesome paintings and sculptures.\nThe artwork seems to come to life in the dim light, evoking a sense of dread.\n");
+        room7.addItem("Hook ", "Versatile tool for climbing, exploring, and crossing treacherous terrain.");
         Room room8 = new Room("Room 8 - Chamber of Whispers\n", "A small, eerie room filled with tattered curtains that billow mysteriously in the stagnant air.\nFaint whispers seem to emanate from the walls themselves, carrying ancient secrets.\n");
+        room8.addItem("Fireball ", "Unleashes a powerful fire spell to vanquish enemies from afar.");
         Room room9 = new Room("Room 9 - Library of Lost Knowledge\n", "Rows of rotting bookshelves filled with disintegrating tomes.\nMotes of dust dance in the faint rays of light filtering through boarded-up windows.\n");
-
+        room9.addItem("Rations ", "Nutritious provisions for sustenance during your daring escapades.");
         // Sætter hvilke veje man kan gå i hvert rum
+
 
         room1.setEastRoom(room2);
         room1.setSouthRoom(room4);
@@ -45,7 +58,8 @@ public class Map {
 
 
     }
-    public Room getCurrentRoom(){
+
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 
