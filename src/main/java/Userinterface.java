@@ -39,7 +39,7 @@ public class Userinterface {
                 }
                 case "take" -> player.pickUpItem(map.getCurrentRoom());
                 case "drop" -> player.leaveItem(map.getCurrentRoom());
-                case "inventorylist" -> System.out.println(player.getInventoryList());
+                case "inventorylist" -> player.getInventoryList();
                 case "look", "look around" -> look();
                 case "help" -> help();
                 case "exit" -> exit = true;

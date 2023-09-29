@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 public class Player {
-    private ArrayList<String> inventoryList = new ArrayList<>();
+    private ArrayList<Item> inventoryList = new ArrayList<>();
     private ArrayList<Item> roomItems = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
 
@@ -36,7 +36,7 @@ public class Player {
         for (Item i : currentroom.getItems()) {
             System.out.println(i.getItemName());
             if (i.getItemName().contains(item)) {
-                inventoryList.add(i.getItemName());
+                inventoryList.add(i);
                 System.out.println("You picked up " + item + ".");
                 toRemove = i;
             } else {
@@ -48,15 +48,15 @@ public class Player {
         }
     }
         //Method to leave an item in the room
+
         public void leaveItem (Room currentroom){
             System.out.println("What item would you like to drop");
-            System.out.println(inventoryList);
+            getInventoryList();
             String item = keyboard.nextLine();
             Item toRemove = null;
-            for (Item i : currentroom.getItems()) {
+            for (Item i : inventoryList) {
                 System.out.println(i.getItemName());
                 if (i.getItemName().contains(item)) {
-                    inventoryList.remove(i.getItemName());
                     System.out.println("You left " + i.getItemName() + " in the room.");
                     toRemove = i;
                 } else {
@@ -64,12 +64,15 @@ public class Player {
                 }
             }
             if (toRemove != null){
-                currentroom.getItems().remove(toRemove);
+                currentroom.addItem(toRemove.getItemName(),toRemove.getItemDescription());
+                inventoryList.remove(toRemove);
             }
 
         }
-        public ArrayList<String> getInventoryList () {
-            return inventoryList;
+        public void getInventoryList () {
+        for (Item i : inventoryList){
+            System.out.println(i.getItemName());
+        }
         }
     }
 
