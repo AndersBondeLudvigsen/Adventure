@@ -71,6 +71,12 @@ public class Adventure {
     public void dropItem(){
         player.leaveItem(map.getCurrentRoom());
     }
+    public enum Eatable{
+        CAN_EAT,
+        CANNOT_EAT,
+        NOT_IN_INVENTORY
+    }
+
 }
 
 

@@ -65,8 +65,8 @@ public class Room {
         return roomName;
     }
 
-    public void addItem(String itemName, String itemDecription) {
-        Item item = new Item(itemName, itemDecription);
+    public void addItem(Item item) {
+       // Item item = new Item(itemName, itemDecription);
         itemArrayList.add(item);
     }
     public ArrayList<Item> getItems() {

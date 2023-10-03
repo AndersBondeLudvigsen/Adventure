@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Userinterface {
     Adventure adventure = new Adventure();
 
+
     public void play() {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
@@ -38,6 +39,17 @@ public class Userinterface {
                 case "drop" -> adventure.dropItem();
                 case "inventory" -> adventure.player.showInventory();
                 case "look", "look around" -> look();
+                case "eat" -> {
+                    System.out.print("What food would you like to eat: ");
+                    String foodName = keyboard.nextLine().toLowerCase();
+                    Adventure.Eatable eatable = adventure.player.EAT(foodName);
+                    switch (eatable) {
+                        case CAN_EAT -> System.out.println("You ate the " + foodName + ". Your health improved.");
+                        case CANNOT_EAT -> System.out.println("You can't eat the " + foodName + ". It's not food.");
+                        case NOT_IN_INVENTORY -> System.out.println("You don't have the " + foodName + " in your inventory.");
+                    }
+                }
+                case "health"-> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;
                 default -> System.out.println("Unknown input");
@@ -58,6 +70,8 @@ public class Userinterface {
         System.out.println("Type exit to exit the game");
         System.out.println("Type 'inventory' to see your items");
     }
+
+
 
     // look funtionen
     public void look() {
