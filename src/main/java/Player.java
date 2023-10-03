@@ -21,7 +21,6 @@ public class Player {
         String item = keyboard.nextLine().toLowerCase();
         Item itemToHandle = null;
         for (Item i : currentroom.getItems()) {
-           // System.out.println(i.getItemName());
             if (i.getItemName().contains(item)) {
                 inventoryList.add(i);
                 System.out.println("You picked up " + item + ".");
@@ -47,7 +46,6 @@ public class Player {
         // Create a copy of the inventory list
         ArrayList<Item> itemsToRemove = new ArrayList<>();
         for (Item i : inventoryList) {
-            //System.out.println(i.getItemName());
             if (i.getItemName().contains(item)) {
                 System.out.println("You left " + i.getItemName() + " in the room.");
                 toRemove = i;
