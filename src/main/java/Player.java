@@ -24,6 +24,7 @@ public class Player {
             if (i.getItemName().contains(item)) {
                 inventoryList.add(i);
                 System.out.println("You picked up " + item + ".");
+                System.out.println("Awaiting your command");
                 itemToHandle = i;
                 break;
             }
@@ -48,6 +49,7 @@ public class Player {
         for (Item i : inventoryList) {
             if (i.getItemName().contains(item)) {
                 System.out.println("You left " + i.getItemName() + " in the room.");
+                System.out.println("Awaiting your command");
                 toRemove = i;
                 itemsToRemove.add(i); // Add items to remove to the copy list
                 break;

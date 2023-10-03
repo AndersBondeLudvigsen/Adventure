@@ -11,6 +11,8 @@ public class Userinterface {
         System.out.println("Welcome to game you are standing in " + adventure.map.getCurrentRoom());
         System.out.println("Start by going south or east ");
         System.out.println("Type help for help");
+        System.out.println("Awaiting your command");
+
         while (!exit) {
             String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
             // Fjerner mellemrum og go hvis det bliver skrevet
@@ -52,7 +54,7 @@ public class Userinterface {
                 case "health"-> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;
-                default -> System.out.println("Unknown input");
+                default -> System.out.println("Unknown input\nAwating your command") ;
 
             }
 
@@ -69,6 +71,7 @@ public class Userinterface {
         System.out.println("Type 'look around to to see which directions you may move to");
         System.out.println("Type exit to exit the game");
         System.out.println("Type 'inventory' to see your items");
+        System.out.println("Type 'eat' if you have food in your inventory");
     }
 
 

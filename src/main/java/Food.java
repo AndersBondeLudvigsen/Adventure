@@ -8,10 +8,6 @@ public class Food extends Item {
         this.health = health;
     }
 
-    /*public Food updateHealth(){
-        currentHealth + adventure.player.EAT(foodName);
-    return updateHealth();
-    }*/
     public int getHealth(){
         return health;
     }
