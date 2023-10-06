@@ -140,15 +140,11 @@ public class Player {
                 if (((RangedWeapon) currentWeapon).getAmmunition() > 0) {
                     System.out.println("shot fired");
                     ((RangedWeapon) currentWeapon).useWeapon();
-                }
-                else System.out.println("You are out of ammunition");
-            }
-            else if (currentWeapon instanceof MeleeWeapon){
+                } else System.out.println("You are out of ammunition");
+            } else if (currentWeapon instanceof MeleeWeapon) {
                 System.out.println("You hit the monster");
             }
-        }
-
-        else System.out.println("You have not equipped a weapon");
+        } else System.out.println("You have not equipped a weapon");
 
     }
 }

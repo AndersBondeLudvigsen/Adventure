@@ -39,14 +39,15 @@ public class Userinterface {
                 }
                 case "take" -> adventure.pickUpItem();
                 case "drop" -> adventure.dropItem();
-                case "equip"-> {
+                case "equip" -> {
                     System.out.println("What weapon would you like to equip");
                     String weaponName = keyboard.nextLine().toLowerCase();
                     Adventure.Equip equip = adventure.player.Equip(weaponName);
                     switch (equip) {
                         case CAN_EQUIP -> System.out.println("You have equiped " + weaponName);
                         case CANNOT_EQUIP -> System.out.println(weaponName + " is not a weapon");
-                        case NOT_IN_INVENTORY -> System.out.println("You don't have " + weaponName + " in your inventory.");
+                        case NOT_IN_INVENTORY ->
+                                System.out.println("You don't have " + weaponName + " in your inventory.");
                     }
                 }
                 case "inventory" -> adventure.player.showInventory();
@@ -62,7 +63,7 @@ public class Userinterface {
                                 System.out.println("You don't have the " + foodName + " in your inventory.");
                     }
                 }
-                case "attack"-> adventure.player.attack();
+                case "attack" -> adventure.player.attack();
                 case "health" -> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;
