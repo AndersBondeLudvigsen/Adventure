@@ -7,7 +7,7 @@ public class Player {
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
-    private Weapon currentWeapon;
+    private Item currentWeapon ;
     private int currentHealth = 20;
 
     public void setPlayerPostion(Room playerPostion) {
@@ -124,6 +124,7 @@ public class Player {
 
         if (found != null) {
             if (found instanceof Weapon) {
+                this.currentWeapon = found;
                 return Adventure.Equip.CAN_EQUIP; // If it's a weapon
             } else {
                 return Adventure.Equip.CANNOT_EQUIP; // If it's not weapon

@@ -63,7 +63,10 @@ public class Userinterface {
                                 System.out.println("You don't have the " + foodName + " in your inventory.");
                     }
                 }
-                case "attack" -> adventure.player.attack();
+                case "attack" ->
+                    adventure.player.attack();
+
+
                 case "health" -> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;

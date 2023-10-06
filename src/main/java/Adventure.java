@@ -89,6 +89,11 @@ public class Adventure {
         NOT_IN_INVENTORY
     }
 
+    public enum Equip {
+        CAN_EQUIP,
+        CANNOT_EQUIP,
+        NOT_IN_INVENTORY
+    }
 }
 
 
