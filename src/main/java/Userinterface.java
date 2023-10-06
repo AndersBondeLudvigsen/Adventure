@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Userinterface {
@@ -39,6 +39,16 @@ public class Userinterface {
                 }
                 case "take" -> adventure.pickUpItem();
                 case "drop" -> adventure.dropItem();
+                case "equip"-> {
+                    System.out.println("What weapon would you like to equip");
+                    String weaponName = keyboard.nextLine().toLowerCase();
+                    Adventure.Equip equip = adventure.player.Equip(weaponName);
+                    switch (equip) {
+                        case CAN_EQUIP -> System.out.println("You have equiped " + weaponName);
+                        case CANNOT_EQUIP -> System.out.println(weaponName + " is not a weapon");
+                        case NOT_IN_INVENTORY -> System.out.println("You don't have " + weaponName + " in your inventory.");
+                    }
+                }
                 case "inventory" -> adventure.player.showInventory();
                 case "look", "look around" -> look();
                 case "eat" -> {
@@ -48,17 +58,16 @@ public class Userinterface {
                     switch (eatable) {
                         case CAN_EAT -> System.out.println("You ate the " + foodName + ". Your health improved.");
                         case CANNOT_EAT -> System.out.println("You can't eat the " + foodName + ". It's not food.");
-                        case NOT_IN_INVENTORY -> System.out.println("You don't have the " + foodName + " in your inventory.");
+                        case NOT_IN_INVENTORY ->
+                                System.out.println("You don't have the " + foodName + " in your inventory.");
                     }
                 }
-                case "health"-> System.out.println("Your health is " + adventure.player.getCurrentHealth());
+                case "attack"-> adventure.player.attack();
+                case "health" -> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;
-                default -> System.out.println("Unknown input\nAwating your command") ;
-
+                default -> System.out.println("Unknown input\nAwaiting your command");
             }
-
-
         }
 
     }
@@ -75,10 +84,8 @@ public class Userinterface {
     }
 
 
-
     // look funtionen
     public void look() {
-
         System.out.println("You are standing in " + adventure.map.getCurrentRoom() + adventure.map.currentRoom.getDescription());
     }
 }

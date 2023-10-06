@@ -74,13 +74,16 @@ public class Adventure {
             System.out.println("Awaiting your command");
         }
     }
-    public void pickUpItem(){
+
+    public void pickUpItem() {
         player.pickUpItem(map.getCurrentRoom());
     }
-    public void dropItem(){
+
+    public void dropItem() {
         player.leaveItem(map.getCurrentRoom());
     }
-    public enum Eatable{
+
+    public enum Eatable {
         CAN_EAT,
         CANNOT_EAT,
         NOT_IN_INVENTORY

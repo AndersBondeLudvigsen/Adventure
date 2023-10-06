@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,36 +7,43 @@ public class Player {
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
-
-
+    private Weapon currentWeapon;
     private int currentHealth = 20;
+
     public void setPlayerPostion(Room playerPostion) {
         this.playerPostion = playerPostion;
     }
+
     public int getCurrentHealth() {
         return currentHealth;
     }
+
     // Method to pick up an item from the room
     public void pickUpItem(Room currentroom) {
         System.out.println("What would you like to pick up");
         String item = keyboard.nextLine().toLowerCase();
         Item itemToHandle = null;
+        boolean itemFound = false;  // Initialize a flag to track if the item is found.
+
         for (Item i : currentroom.getItems()) {
             if (i.getItemName().contains(item)) {
                 inventoryList.add(i);
                 System.out.println("You picked up " + item + ".");
-                System.out.println("Awaiting your command");
                 itemToHandle = i;
+                itemFound = true;  // Set the flag to true since the item was found.
                 break;
             }
-            else {
-                System.out.println("This item is not in the room.");
-            }
         }
-        if (itemToHandle != null) {
+
+        if (!itemFound) {
+            System.out.println("This item is not in the room.");  // Print this message if the item was not found.
+        } else {
             currentroom.getItems().remove(itemToHandle);
         }
+
+        System.out.println("Awaiting your command");
     }
+
     //Method to leave an item in the room
 
     public void leaveItem(Room currentroom) {
@@ -53,8 +61,7 @@ public class Player {
                 toRemove = i;
                 itemsToRemove.add(i); // Add items to remove to the copy list
                 break;
-            }
-            else {
+            } else {
                 System.out.println("You don't have that item in your inventory.");
             }
         }
@@ -82,33 +89,68 @@ public class Player {
     private ArrayList<Item> getInventory() {
         return inventoryList;
     }
+
     public Adventure.Eatable EAT(String foodName) {
         Item found = null;
-        for (Item item: inventoryList) {
-            if (item.getItemName().equals(foodName)){
+        for (Item item : inventoryList) {
+            if (item.getItemName().equals(foodName)) {
                 found = item;
                 break; // Exit the loop once you find a matching item
             }
         }
 
-        if (found != null){
+        if (found != null) {
             if (found instanceof Food) {
                 System.out.println(found.getItemName() + " has been eaten");
                 inventoryList.remove(found);
                 currentHealth += ((Food) found).getHealth();
                 return Adventure.Eatable.CAN_EAT; // If it's Food
-            }
-            else {
+            } else {
                 return Adventure.Eatable.CANNOT_EAT; // If it's not food
             }
-        }
-        else {
+        } else {
             return Adventure.Eatable.NOT_IN_INVENTORY; // If the item is not in the inventory
         }
     }
 
+    public Adventure.Equip Equip(String weaponName) {
+        Item found = null;
+        for (Item item : inventoryList) {
+            if (item.getItemName().equals(weaponName)) {
+                found = item;
+                break; // Exit the loop once you find a matching item
+            }
+        }
 
+        if (found != null) {
+            if (found instanceof Weapon) {
+                return Adventure.Equip.CAN_EQUIP; // If it's a weapon
+            } else {
+                return Adventure.Equip.CANNOT_EQUIP; // If it's not weapon
+            }
+        } else {
+            return Adventure.Equip.NOT_IN_INVENTORY; // If the item is not in the inventory
+        }
+    }
 
+    public void attack() {
+        if (currentWeapon != null) {
+            // Equiped weapon
+            if (currentWeapon instanceof RangedWeapon) {
+                if (((RangedWeapon) currentWeapon).getAmmunition() > 0) {
+                    System.out.println("shot fired");
+                    ((RangedWeapon) currentWeapon).useWeapon();
+                }
+                else System.out.println("You are out of ammunition");
+            }
+            else if (currentWeapon instanceof MeleeWeapon){
+                System.out.println("You hit the monster");
+            }
+        }
+
+        else System.out.println("You have not equipped a weapon");
+
+    }
 }
 
 

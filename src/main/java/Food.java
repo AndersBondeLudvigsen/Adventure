@@ -8,11 +8,9 @@ public class Food extends Item {
         this.health = health;
     }
 
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
-
-
 
 
 }

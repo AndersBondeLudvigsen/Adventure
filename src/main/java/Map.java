@@ -15,6 +15,8 @@ public class Map {
         //Room 3
         Room room3 = new Room("Room 3 - Forgotten Smithy\n", "A blacksmith's workshop, filled with rusted tools and broken anvils.\nThe air is thick with the scent of old metalwork, and the forge lies cold and lifeless.\n");
         room3.addItem(new Item("potion", " a vital resource on your perilous journey."));
+        room3.addItem(new MeleeWeapon("broadsword", "A weathered blade with jagged edges." , 50));
+
         //Room 4
         Room room4 = new Room("Room 4 - Guard Room of Yore\n", "The remains of a guard room, with ancient weapons rusting on the racks.\nFaded banners hang from the walls, bearing the insignia of a long-lost kingdom.\n");
         room4.addItem(new Item("backpack", " Sturdy pack to carry provisions and equipment for your travels."));
@@ -28,10 +30,14 @@ public class Map {
         room6.addItem(new Food("Mushrooms", "poison mushrooms that may kill u", -40));
         //Room 7
         Room room7 = new Room("Room 7 - Macabre Art Room\n", "A chilling gallery displaying gruesome paintings and sculptures.\nThe artwork seems to come to life in the dim light, evoking a sense of dread.\n");
-        room7.addItem( new Item("hook", " Versatile tool for climbing, exploring, and crossing treacherous terrain."));
+        room7.addItem(new Item("hook", " Versatile tool for climbing, exploring, and crossing treacherous terrain."));
+        room7.addItem(new RangedWeapon("axe", " Forged by dwarves, strikes like thunder.", -30,5));
+
         //Room 8
         Room room8 = new Room("Room 8 - Chamber of Whispers\n", "A small, eerie room filled with tattered curtains that billow mysteriously in the stagnant air.\nFaint whispers seem to emanate from the walls themselves, carrying ancient secrets.\n");
-        room8.addItem( new Item("fireball", " Unleashes a powerful fire spell to vanquish enemies from afar."));
+        room8.addItem(new Item("fireball", " Unleashes a powerful fire spell to vanquish enemies from afar."));
+        room8.addItem(new MeleeWeapon("dagger",  "A concealed dagger that thrives in the darkness.", 40));
+
         //Room 9
         Room room9 = new Room("Room 9 - Library of Lost Knowledge\n", "Rows of rotting bookshelves filled with disintegrating tomes.\nMotes of dust dance in the faint rays of light filtering through boarded-up windows.\n");
         room9.addItem( new Item ("Book", " Nutritious provisions for sustenance during your daring escapades."));
