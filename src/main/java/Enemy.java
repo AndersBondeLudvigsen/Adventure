@@ -3,6 +3,7 @@ public class Enemy {
     private String enemtdDcription;
     private int enemyHealth;
     private Weapon enemyWeapon;
+    private Player player;
 
     public Enemy(String enemyName, String enemyDecription, int enemyHealth, Weapon enemyWeapon) {
         this.enemyName = enemyName;
@@ -45,7 +46,7 @@ public class Enemy {
     }
 
 
-    public void enemyAttackPlayer(Player player) {
+    public void enemyAttackPlayer() {
         int damage = enemyWeapon.getDamage();
         int playerHealth = player.getCurrentHealth();
         player.setCurrentHealth(playerHealth - damage);
@@ -55,6 +56,12 @@ public class Enemy {
         int damage = player.getCurrentWeapon().getDamage();
         int health = enemyHealth;
         enemy.setHealth(health-damage);
+    }
+    public boolean enemyDead(){
+        return enemyHealth <= 0;
+    }
+    public void dropEnemyWeapon(Room currentroom){
+        currentroom.addEnemyItem(enemyWeapon);
     }
 
 }

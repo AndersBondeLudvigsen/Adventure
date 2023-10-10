@@ -11,6 +11,15 @@ public class Room {
     private ArrayList<Item> itemArrayList = new ArrayList<>();
     private ArrayList<Enemy>enemyArrayList = new ArrayList<>();
 
+
+    public void removeEnemy(Enemy enemy){
+        enemyArrayList.remove(enemy);
+    }
+    public void addEnemyItem (Item enemyItem){
+        itemArrayList.add(enemyItem);
+
+    }
+
     public ArrayList<Enemy> getEnemyArrayList() {
         return enemyArrayList;
     }
@@ -79,5 +88,8 @@ public class Room {
 
     public ArrayList<Item> getItems() {
         return itemArrayList;
+    }
+    public Enemy getEnemy(){
+        return enemyArrayList.get(0);
     }
 }

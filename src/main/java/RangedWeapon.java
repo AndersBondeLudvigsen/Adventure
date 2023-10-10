@@ -5,13 +5,22 @@ public class  RangedWeapon extends Weapon {
         super(itemName, itemDescription, damage);
         this.ammunition = ammunition;
     }
+    @Override
     public int getAmmunition(){
         return ammunition;
     }
     public void setAmmunition(){
     }
-    public void useWeapon(){
-        ammunition--;
+    public Adventure.AttackEnum attack(){
+       if (ammunition >0){
+           ammunition -= 1;
+           return Adventure.AttackEnum.FIRED;
+
+       }else {
+           return Adventure.AttackEnum.NO_AMMO;
+       }
+
+
     }
     }
 

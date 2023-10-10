@@ -7,9 +7,16 @@ public class Player {
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
-    private Weapon currentWeapon ;
+    private Weapon currentWeapon;
+    private Enemy enemy;
 
-    public Weapon getCurrentWeapon(){
+
+    public int updateHealth(int healthPoints) {
+        return currentHealth += healthPoints;
+    }
+
+
+    public Weapon getCurrentWeapon() {
         return currentWeapon;
     }
 
@@ -143,21 +150,61 @@ public class Player {
         }
     }
 
-    public void attack() {
+    public int enemyAttack() {
+        return playerPostion.getEnemy().getHealth();
+    }
+
+    public Adventure.AttackEnum attack() {
+        Enemy attackEnemy = playerPostion.getEnemyArrayList().isEmpty() ? null : playerPostion.getEnemyArrayList().get(0);
         if (currentWeapon != null) {
             // Equiped weapon
             if (currentWeapon instanceof RangedWeapon) {
-                if (((RangedWeapon) currentWeapon).getAmmunition() > 0) {
-                    System.out.println("shot fired");
-                    ((RangedWeapon) currentWeapon).useWeapon();
-                } else System.out.println("You are out of ammunition");
-            } else if (currentWeapon instanceof MeleeWeapon) {
-                System.out.println("You hit the monster");
+                if (currentWeapon.getAmmunition() > 0) {
+                    return Adventure.AttackEnum.FIRED;
+                }
+                    if (attackEnemy != null) {
+                        attackEnemy.setHealth(playerPostion.getEnemy().getHealth());
+                        updateHealth(enemyAttack());
+                        enemy.enemyAttackPlayer();
+                        if (attackEnemy.enemyDead()) {
+                            playerPostion.removeEnemy(attackEnemy);
+                            attackEnemy.dropEnemyWeapon(playerPostion);
+                            return Adventure.AttackEnum.ENEMY_DEAD;
+                        }
+                        Adventure.AttackEnum weaponAttackResult = currentWeapon.attack();
+                        if (weaponAttackResult != null) {
+                            return weaponAttackResult;
+                        }
+                    } else if (currentWeapon instanceof MeleeWeapon) {
+                        return Adventure.AttackEnum.MELEE;
+                    }
+                        if (attackEnemy != null) {
+                            attackEnemy.setHealth(playerPostion.getEnemy().getHealth());
+                            updateHealth(enemyAttack());
+                            enemy.enemyAttackPlayer();
+                            if (attackEnemy.enemyDead()) {
+                                playerPostion.removeEnemy(attackEnemy);
+                                attackEnemy.dropEnemyWeapon(playerPostion);
+                                return Adventure.AttackEnum.ENEMY_DEAD;
+                            }
+                        } else if (currentWeapon != null) {
+                            if (currentWeapon instanceof RangedWeapon) {
+                                if (currentWeapon.getAmmunition() < 1)
+                                    return Adventure.AttackEnum.NO_AMMO;
+                            }
+                        }
+
+                    } else {
+                        return Adventure.AttackEnum.NO_WEAPON_EQUIPED;
+                    }
+                }
+        return Adventure.AttackEnum.NO_WEAPON_EQUIPED;
             }
-        } else System.out.println("You have not equipped a weapon");
+
+
 
     }
 
-}
+
 
 

@@ -1,6 +1,6 @@
 public abstract class Weapon extends Item {
-    int damage;
-
+   private int damage;
+   private int ammunition;
 
     public int getDamage() {
         return damage;
@@ -10,5 +10,10 @@ public abstract class Weapon extends Item {
         super(itemName, itemDecription);
         this.damage = damage;
     }
+    public int getAmmunition() {
+        return ammunition;
+    }
+    public abstract Adventure.AttackEnum attack();
 
 }
+

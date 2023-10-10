@@ -41,7 +41,7 @@ public class Adventure {
             }
             ArrayList<Enemy> enemyArrayList = map.getCurrentRoom().getEnemyArrayList();
             for (Enemy enemy : enemyArrayList) {
-                System.out.println(enemy.getName() + " : " + enemy.getDecription());
+                System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
                 player.setPlayerPostion(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
@@ -64,7 +64,7 @@ public class Adventure {
             }
             ArrayList<Enemy> enemyArrayList = map.getCurrentRoom().getEnemyArrayList();
             for (Enemy enemy : enemyArrayList) {
-                System.out.println(enemy.getName() + " : " + enemy.getDecription());
+                System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
                 player.setPlayerPostion(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
@@ -109,6 +109,16 @@ public class Adventure {
         CAN_EQUIP,
         CANNOT_EQUIP,
         NOT_IN_INVENTORY
+    }
+    public enum AttackEnum{
+        MELEE,
+        FIRED,
+        NO_AMMO,
+        ENEMY_DEAD,
+        NO_WEAPON_EQUIPED,
+
+
+
     }
 }
 

@@ -63,10 +63,30 @@ public class Userinterface {
                                 System.out.println("You don't have the " + foodName + " in your inventory.");
                     }
                 }
-                case "attack" ->
-                    adventure.player.attack();
 
-
+                case "attack" -> {
+                    Adventure.AttackEnum result = adventure.player.attack();
+                    // Handle the result as needed
+                    switch (result) {
+                        case FIRED:
+                            System.out.println("You fired your ranged weapon.");
+                            break;
+                        case MELEE:
+                            System.out.println("You performed a melee attack.");
+                            break;
+                        case ENEMY_DEAD:
+                            System.out.println("You defeated the enemy.");
+                            break;
+                        case NO_AMMO:
+                            System.out.println("You are out of ammunition.");
+                            break;
+                        case NO_WEAPON_EQUIPED:
+                            System.out.println("You don't have a weapon equipped.");
+                            break;
+                        default:
+                            System.out.println("You can't attack right now.");
+                    }
+                }
                 case "health" -> System.out.println("Your health is " + adventure.player.getCurrentHealth());
                 case "help" -> help();
                 case "exit" -> exit = true;
