@@ -9,7 +9,11 @@ public class Room {
     private Room southRoom;
     private Room westRoom;
     private ArrayList<Item> itemArrayList = new ArrayList<>();
+    private ArrayList<Enemy>enemyArrayList = new ArrayList<>();
 
+    public ArrayList<Enemy> getEnemyArrayList() {
+        return enemyArrayList;
+    }
 
     public Room(String roomName, String description) {
         this.roomName = roomName;
@@ -67,6 +71,10 @@ public class Room {
 
     public void addItem(Item item) {
         itemArrayList.add(item);
+    }
+    public void addEnemy(Enemy enemy){
+        enemyArrayList.add(enemy);
+
     }
 
     public ArrayList<Item> getItems() {

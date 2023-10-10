@@ -7,7 +7,16 @@ public class Player {
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
-    private Item currentWeapon ;
+    private Weapon currentWeapon ;
+
+    public Weapon getCurrentWeapon(){
+        return currentWeapon;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
     private int currentHealth = 20;
 
     public void setPlayerPostion(Room playerPostion) {
@@ -124,7 +133,7 @@ public class Player {
 
         if (found != null) {
             if (found instanceof Weapon) {
-                this.currentWeapon = found;
+                this.currentWeapon = (Weapon) found;
                 return Adventure.Equip.CAN_EQUIP; // If it's a weapon
             } else {
                 return Adventure.Equip.CANNOT_EQUIP; // If it's not weapon
@@ -148,6 +157,7 @@ public class Player {
         } else System.out.println("You have not equipped a weapon");
 
     }
+
 }
 
 
