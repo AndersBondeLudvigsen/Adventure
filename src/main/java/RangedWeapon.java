@@ -11,16 +11,16 @@ public class  RangedWeapon extends Weapon {
     }
     public void setAmmunition(){
     }
-    public Adventure.AttackEnum attack(){
-       if (ammunition >0){
-           ammunition -= 1;
-           return Adventure.AttackEnum.FIRED;
-
-       }else {
-           return Adventure.AttackEnum.NO_AMMO;
-       }
-
+    public Adventure.AttackEnum attack() {
+        if (ammunition > 0) {
+            ammunition -= 1;
+            System.out.println(getAmmunition());
+            return Adventure.AttackEnum.FIRED;
+        } else {
+            return Adventure.AttackEnum.NO_AMMO;
+        }
+    }
 
     }
-    }
+
 

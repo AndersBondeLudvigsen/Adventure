@@ -37,7 +37,8 @@ public class Userinterface {
                     adventure.moveEast();
 
                 }
-                case "take" -> adventure.pickUpItem();
+                case "take" ->{ adventure.pickUpItem();
+                }
                 case "drop" -> adventure.dropItem();
                 case "equip" -> {
                     System.out.println("What weapon would you like to equip");
@@ -54,6 +55,7 @@ public class Userinterface {
                 case "look", "look around" -> look();
                 case "eat" -> {
                     System.out.print("What food would you like to eat: ");
+                    System.out.println(adventure.player.getInventoryList());
                     String foodName = keyboard.nextLine().toLowerCase();
                     Adventure.Eatable eatable = adventure.player.EAT(foodName);
                     switch (eatable) {
@@ -83,8 +85,17 @@ public class Userinterface {
                         case NO_WEAPON_EQUIPED:
                             System.out.println("You don't have a weapon equipped.");
                             break;
+                        case NONE:
+                            System.out.println("Something went wrong");
+                            break;
+                        case PLAYER_DEAD:
+                            System.out.println("You have been killed");
+                            System.out.println("The game will now end");
+                            exit = true;
+                            break;
                         default:
                             System.out.println("You can't attack right now.");
+                            break;
                     }
                 }
                 case "health" -> System.out.println("Your health is " + adventure.player.getCurrentHealth());
@@ -111,5 +122,15 @@ public class Userinterface {
     // look funtionen
     public void look() {
         System.out.println("You are standing in " + adventure.map.getCurrentRoom() + adventure.map.currentRoom.getDescription());
+        System.out.println("items in room " + adventure.map.getCurrentRoom().getItems());
+        if (adventure.map.getCurrentRoom().getEnemyArrayList().size() != 0) {
+            Enemy enemy = adventure.map.getCurrentRoom().getEnemy();
+            if (enemy != null) {
+                System.out.println("Enemies in the room: " + adventure.map.getCurrentRoom().getEnemy().getName());
+            } else {
+                System.out.println("There are no enemies in the room.");
+            }
+        }
     }
-}
+    }
+

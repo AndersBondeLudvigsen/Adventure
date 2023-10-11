@@ -4,11 +4,16 @@ import java.util.Scanner;
 
 
 public class Player {
+    public ArrayList<Item> getInventoryList() {
+        return inventoryList;
+    }
+
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
     private Weapon currentWeapon;
-    private Enemy enemy;
+    private boolean exit;
+
 
 
     public int updateHealth(int healthPoints) {
@@ -24,7 +29,7 @@ public class Player {
         this.currentHealth = currentHealth;
     }
 
-    private int currentHealth = 20;
+    private int currentHealth = 100;
 
     public void setPlayerPostion(Room playerPostion) {
         this.playerPostion = playerPostion;
@@ -35,16 +40,17 @@ public class Player {
     }
 
     // Method to pick up an item from the room
-    public void pickUpItem(Room currentroom) {
+    public void pickUpItem(Room currentRoom) {
         System.out.println("What would you like to pick up");
         String item = keyboard.nextLine().toLowerCase();
         Item itemToHandle = null;
         boolean itemFound = false;  // Initialize a flag to track if the item is found.
 
-        for (Item i : currentroom.getItems()) {
-            if (i.getItemName().contains(item)) {
+        // Check if the player's input matches any item's name exactly.
+        for (Item i : currentRoom.getItems()) {
+            if (i.getItemName().equalsIgnoreCase(item)) {
                 inventoryList.add(i);
-                System.out.println("You picked up " + item + ".");
+                System.out.println("You picked up " + i.getItemName() + ".");
                 itemToHandle = i;
                 itemFound = true;  // Set the flag to true since the item was found.
                 break;
@@ -52,17 +58,19 @@ public class Player {
         }
 
         if (!itemFound) {
-            System.out.println("This item is not in the room.");  // Print this message if the item was not found.
+            System.out.println("The item is not in the room or does not exist.");  // Print this message if the item was not found.
         } else {
-            currentroom.getItems().remove(itemToHandle);
+            currentRoom.getItems().remove(itemToHandle);
         }
 
         System.out.println("Awaiting your command");
     }
 
-    //Method to leave an item in the room
 
-    public void leaveItem(Room currentroom) {
+
+
+    //Method to leave an item in the room
+    public void leaveItem(Room currentRoom) {
         System.out.println("What item would you like to drop");
         showInventory();
         String item = keyboard.nextLine().toLowerCase();
@@ -70,25 +78,26 @@ public class Player {
 
         // Create a copy of the inventory list
         ArrayList<Item> itemsToRemove = new ArrayList<>();
+
         for (Item i : inventoryList) {
-            if (i.getItemName().contains(item)) {
+            if (i.getItemName().toLowerCase().contains(item)) {
                 System.out.println("You left " + i.getItemName() + " in the room.");
-                System.out.println("Awaiting your command");
                 toRemove = i;
                 itemsToRemove.add(i); // Add items to remove to the copy list
-                break;
-            } else {
-                System.out.println("You don't have that item in your inventory.");
             }
         }
 
         if (toRemove != null) {
             for (Item i : itemsToRemove) {
                 inventoryList.remove(i); // Remove items from the original list
-                currentroom.addItem(i);
+                currentRoom.addItem(i);
             }
+            System.out.println("Awaiting your command");
+        } else {
+            System.out.println("You don't have that item in your inventory.");
         }
     }
+
 
     public void showInventory() {
         ArrayList<Item> playerInventory = getInventory();
@@ -132,7 +141,7 @@ public class Player {
     public Adventure.Equip Equip(String weaponName) {
         Item found = null;
         for (Item item : inventoryList) {
-            if (item.getItemName().equals(weaponName)) {
+            if (item.getItemName().toLowerCase().equals(weaponName)) {
                 found = item;
                 break; // Exit the loop once you find a matching item
             }
@@ -150,17 +159,28 @@ public class Player {
         }
     }
 
-    public int enemyAttack() {
-        return playerPostion.getEnemy().getHealth();
-    }
-
     public Adventure.AttackEnum attack() {
         Enemy attackEnemy = playerPostion.getEnemyArrayList().isEmpty() ? null : playerPostion.getEnemyArrayList().get(0);
+        Adventure.AttackEnum status = Adventure.AttackEnum.NONE;
+        exit = false;
+        if (attackEnemy == null) {
+            return Adventure.AttackEnum.NO_ENEMY_IN_ROOM;
+        }
+
+        System.out.println(attackEnemy);
         if (currentWeapon != null) {
             // Equiped weapon
             if (currentWeapon instanceof RangedWeapon) {
                 if (currentWeapon.getAmmunition() > 0) {
-                    return Adventure.AttackEnum.FIRED;
+                    Adventure.AttackEnum ammoStatus = currentWeapon.attack();
+                    if (ammoStatus == Adventure.AttackEnum.FIRED) {
+                        currentHealth -= attackEnemy.getWeapon().getDamage();
+                        attackEnemy.setHealth(attackEnemy.getHealth() - currentWeapon.getDamage());
+
+                        status = Adventure.AttackEnum.FIRED;
+                    } else {
+                        status = Adventure.AttackEnum.NO_AMMO;
+                    }
                 }
                     if (attackEnemy != null) {
                         attackEnemy.setHealth(playerPostion.getEnemy().getHealth());
@@ -203,7 +223,8 @@ public class Player {
 
 
 
-    }
+
+
 
 
 

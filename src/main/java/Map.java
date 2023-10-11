@@ -7,9 +7,9 @@ public class Map {
 
         //Room 1
         Room room1 = new Room("Room 1 - the Entry Hall\n", "A grand chamber with faded tapestries that once depicted heroic battles.\nThe once-marble floor is now cracked and worn, and a chandelier hangs precariously from the ceiling.\n");
-        room1.addItem(new Item("shield", " Basic wooden shield for blocking attacks in your adventure."));
-        room1.addItem(new Food("elf bread", " Light and sweet golden loaf.", 30));
-        room1.addItem(new RangedWeapon("longbow", " Elegant and precise with long range.", -20, 5));
+        room1.addItem(new Item("Shield", " basic wooden shield for blocking attacks in your adventure."));
+        room1.addItem(new Food("Elf bread", " light and sweet golden loaf.", 30));
+        room1.addItem(new RangedWeapon("Longbow", " elegant and precise with long range.", 20, 5));
 
         //Room 2
         Room room2 = new Room("Room 2 - Hallway of Echoes\n", "A long, narrow corridor lined with dusty suits of armor that stand like silent sentinels.\nTorches, long extinguished, still line the walls, casting eerie shadows.\n");
@@ -39,8 +39,8 @@ public class Map {
         room6.addEnemy(new Enemy("Wolf", "good dog", 10, new MeleeWeapon("teeth", "Very sharp teeth" , 10)));
         //Room 7
         Room room7 = new Room("Room 7 - Macabre Art Room\n", "A chilling gallery displaying gruesome paintings and sculptures.\nThe artwork seems to come to life in the dim light, evoking a sense of dread.\n");
-        room7.addItem(new Item("hook", " Versatile tool for climbing, exploring, and crossing treacherous terrain."));
-        room7.addItem(new RangedWeapon("axe", " Forged by dwarves, strikes like thunder.", -30, 5));
+        room7.addItem(new Item("Hook", " versatile tool for climbing, exploring, and crossing treacherous terrain."));
+        room7.addItem(new MeleeWeapon("Axe", " forged by dwarves, strikes like thunder.", 30));
 
         //Room 8
         Room room8 = new Room("Room 8 - Chamber of Whispers\n", "A small, eerie room filled with tattered curtains that billow mysteriously in the stagnant air.\nFaint whispers seem to emanate from the walls themselves, carrying ancient secrets.\n");

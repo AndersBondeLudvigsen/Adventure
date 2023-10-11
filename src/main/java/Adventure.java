@@ -92,13 +92,15 @@ public class Adventure {
 
         }
     }
-    public void pickUpItem() {
-        player.pickUpItem(map.getCurrentRoom());
-    }
 
     public void dropItem() {
         player.leaveItem(map.getCurrentRoom());
     }
+
+    public void pickUpItem() {
+        player.pickUpItem(map.getCurrentRoom());
+    }
+
     public enum Eatable {
         CAN_EAT,
         CANNOT_EAT,
@@ -116,9 +118,9 @@ public class Adventure {
         NO_AMMO,
         ENEMY_DEAD,
         NO_WEAPON_EQUIPED,
-
-
-
+        NO_ENEMY_IN_ROOM,
+        NONE,
+        PLAYER_DEAD
     }
 }
 
