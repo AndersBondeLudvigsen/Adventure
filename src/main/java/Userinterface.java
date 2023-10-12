@@ -91,9 +91,6 @@ public class Userinterface {
                         case NO_WEAPON_EQUIPED:
                             System.out.println("You don't have a weapon equipped.");
                             break;
-                        case NONE:
-                            System.out.println("Something went wrong");
-                            break;
                         case PLAYER_DEAD:
                             System.out.println("You have been killed");
                             System.out.println("The game will now end");

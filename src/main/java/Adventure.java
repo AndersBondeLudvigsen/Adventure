@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Adventure {
     Player player = new Player();
     Map map = new Map();
-    private Enemy enemy;
+
 
     public void moveNorth() {
         if (map.currentRoom.getNorthRoom() == null) {
@@ -133,7 +133,6 @@ public class Adventure {
         ENEMY_DEAD,
         NO_WEAPON_EQUIPED,
         NO_ENEMY_IN_ROOM,
-        NONE,
         PLAYER_DEAD
     }
 }
