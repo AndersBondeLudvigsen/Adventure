@@ -21,7 +21,7 @@ public class Adventure {
             for (Enemy enemy : enemyArrayList) {
                 System.out.println(enemy.getName() + " : " + enemy.getDecription());
             }
-                player.setPlayerPostion(map.getCurrentRoom());
+                player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
 
         }
@@ -43,7 +43,7 @@ public class Adventure {
             for (Enemy enemy : enemyArrayList) {
                 System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
-                player.setPlayerPostion(map.getCurrentRoom());
+                player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
 
         }
@@ -66,7 +66,7 @@ public class Adventure {
             for (Enemy enemy : enemyArrayList) {
                 System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
-                player.setPlayerPostion(map.getCurrentRoom());
+                player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
 
         }
@@ -87,7 +87,7 @@ public class Adventure {
             for (Enemy enemy : enemyArrayList) {
                 System.out.println(enemy.getName() + " : " + enemy.getDecription());
             }
-                player.setPlayerPostion(map.getCurrentRoom());
+                player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
 
         }
@@ -97,8 +97,22 @@ public class Adventure {
         player.leaveItem(map.getCurrentRoom());
     }
 
-    public void pickUpItem() {
-        player.pickUpItem(map.getCurrentRoom());
+    public void pickUpItem(Room currentroom, String itemName) {
+        player.pickUpItem(map.getCurrentRoom(), itemName);
+    }
+    public void pickUpItem2(){
+        player.pickUpItem2(map.getCurrentRoom());
+    }
+    public ArrayList<Food> getFoodItems() {
+        ArrayList<Food> foodItems = new ArrayList<>();
+
+        for (Item item : player.getInventoryList()) {
+            if (item instanceof Food) {
+                foodItems.add((Food) item);
+            }
+        }
+
+        return foodItems;
     }
 
     public enum Eatable {

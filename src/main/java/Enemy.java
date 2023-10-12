@@ -45,33 +45,12 @@ public class Enemy {
         this.enemyHealth = health;
     }
 
-
-/*    public void enemyAttackPlayer() {
-        int damage = enemyWeapon.getDamage();
-        int playerHealth = player.getCurrentHealth();
-        player.setCurrentHealth(playerHealth - damage);
-    }
-*/
-    public void playerAttackEnemy(Player player, Enemy enemy){
-        int damage = player.getCurrentWeapon().getDamage();
-        int health = enemyHealth;
-        enemy.setHealth(health-damage);
-    }
     public boolean enemyDead(){
         return enemyHealth <= 0;
     }
     public void dropEnemyWeapon(Room currentroom){
         currentroom.addEnemyItem(enemyWeapon);
     }
-    public void reduceHealth(int damage) {
-        if (damage > 0) {
-            enemyHealth -= damage;
-            if (enemyHealth < 0) {
-                enemyHealth = 0; // Ensure that health does not go below 0
-            }
-        }
-    }
-
     @Override
     public String toString() {
         return "Enemy{" +

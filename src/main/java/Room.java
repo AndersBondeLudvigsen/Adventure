@@ -13,9 +13,7 @@ public class Room {
 
 
     public void removeEnemy(Enemy enemy){
-        System.out.println("Before" + enemyArrayList.size());
         enemyArrayList.remove(enemy);
-        System.out.println("After" + enemyArrayList.size());
     }
     public void addEnemyItem (Item enemyItem){
         itemArrayList.add(enemyItem);

@@ -39,16 +39,12 @@ public class Player {
         return currentHealth;
     }
 
-    // Method to pick up an item from the room
-    public void pickUpItem(Room currentRoom) {
-        System.out.println("What would you like to pick up");
-        String item = keyboard.nextLine().toLowerCase();
+    public void pickUpItem(Room currentRoom, String itemName) {
         Item itemToHandle = null;
         boolean itemFound = false;  // Initialize a flag to track if the item is found.
 
-        // Check if the player's input matches any item's name exactly.
         for (Item i : currentRoom.getItems()) {
-            if (i.getItemName().equalsIgnoreCase(item)) {
+            if (i.getItemName().equalsIgnoreCase(itemName)) {
                 inventoryList.add(i);
                 System.out.println("You picked up " + i.getItemName() + ".");
                 itemToHandle = i;
@@ -65,6 +61,31 @@ public class Player {
 
         System.out.println("Awaiting your command");
     }
+    public void pickUpItem2(Room currentRoom) {
+            System.out.println("What would you like to pick up");
+            String item = keyboard.nextLine().toLowerCase();
+            Item itemToHandle = null;
+            boolean itemFound = false;  // Initialize a flag to track if the item is found.
+
+            // Check if the player's input matches any item's name exactly.
+            for (Item i : currentRoom.getItems()) {
+                if (i.getItemName().equalsIgnoreCase(item)) {
+                    inventoryList.add(i);
+                    System.out.println("You picked up " + i.getItemName() + ".");
+                    itemToHandle = i;
+                    itemFound = true;  // Set the flag to true since the item was found.
+                    break;
+                }
+            }
+
+            if (!itemFound) {
+                System.out.println("The item is not in the room or does not exist.");  // Print this message if the item was not found.
+            } else {
+                currentRoom.getItems().remove(itemToHandle);
+            }
+
+            System.out.println("Awaiting your command");
+        }
 
 
 
@@ -118,7 +139,7 @@ public class Player {
     public Adventure.Eatable EAT(String foodName) {
         Item found = null;
         for (Item item : inventoryList) {
-            if (item.getItemName().equals(foodName)) {
+            if (item.getItemName().toLowerCase().toLowerCase().equals(foodName)) {
                 found = item;
                 break; // Exit the loop once you find a matching item
             }
@@ -167,7 +188,6 @@ public class Player {
             return Adventure.AttackEnum.NO_ENEMY_IN_ROOM;
         }
 
-        System.out.println(attackEnemy);
         if (currentWeapon != null) {
             // Equiped weapon
             if (currentWeapon instanceof RangedWeapon) {

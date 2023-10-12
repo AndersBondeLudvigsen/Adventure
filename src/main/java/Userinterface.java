@@ -1,23 +1,23 @@
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Userinterface {
     Adventure adventure = new Adventure();
 
-
     public void play() {
         Scanner keyboard = new Scanner(System.in);
         boolean exit = false;
-        System.out.println("Welcome to game you are standing in " + adventure.map.getCurrentRoom());
-        System.out.println("Start by going south or east ");
-        System.out.println("Type help for help");
+        System.out.println("Welcome to the game. You are standing in " + adventure.map.getCurrentRoom().getRoomName());
+        System.out.println("Start by going south or east.");
+        System.out.println("Type 'help' for assistance.");
         System.out.println("Awaiting your command");
 
         while (!exit) {
-            String userInput = keyboard.nextLine().toLowerCase(); // Converter input så man kan skrive med små og store bogstaver.
-            // Fjerner mellemrum og go hvis det bliver skrevet
-            String Input = userInput.replace("go", "").replace("around", "").replace("item", "").trim();
-            switch (Input) {
+            String userInput = keyboard.nextLine().toLowerCase();
+            String[] inputWords = userInput.split(" "); // Split user input into words
+
+            switch (inputWords[0]) { // Check the first word
                 case "north", "n" -> {
                     System.out.println("Going North");
                     adventure.moveNorth();
@@ -25,20 +25,28 @@ public class Userinterface {
                 case "south", "s" -> {
                     System.out.println("Going South");
                     adventure.moveSouth();
-
                 }
                 case "west", "w" -> {
                     System.out.println("Going West");
                     adventure.moveWest();
-
                 }
                 case "east", "e" -> {
                     System.out.println("Going East");
                     adventure.moveEast();
+                }
+                case "take" -> {
+                    // Check if there is a second word (the item name) and pick it up
+                    if (inputWords.length >= 2) {
+                        StringBuilder itemToTake = new StringBuilder(inputWords[1]);
+                        for (int i = 2; i < inputWords.length; i++) {
+                            itemToTake.append(" ").append(inputWords[i]);
+                        }
+                        adventure.pickUpItem(adventure.map.getCurrentRoom(), itemToTake.toString());
+                    } else {
+                        adventure.pickUpItem2();
+                    }
+                }
 
-                }
-                case "take" ->{ adventure.pickUpItem();
-                }
                 case "drop" -> adventure.dropItem();
                 case "equip" -> {
                     System.out.println("What weapon would you like to equip");
@@ -55,11 +63,11 @@ public class Userinterface {
                 case "look", "look around" -> look();
                 case "eat" -> {
                     System.out.print("What food would you like to eat: ");
-                    System.out.println(adventure.player.getInventoryList());
+                    System.out.println(adventure.getFoodItems());
                     String foodName = keyboard.nextLine().toLowerCase();
                     Adventure.Eatable eatable = adventure.player.EAT(foodName);
                     switch (eatable) {
-                        case CAN_EAT -> System.out.println("You ate the " + foodName + ". Your health improved.");
+                        case CAN_EAT -> System.out.println("You ate the " + foodName + ". Your health has changed to " + adventure.player.getCurrentHealth());
                         case CANNOT_EAT -> System.out.println("You can't eat the " + foodName + ". It's not food.");
                         case NOT_IN_INVENTORY ->
                                 System.out.println("You don't have the " + foodName + " in your inventory.");
@@ -68,7 +76,6 @@ public class Userinterface {
 
                 case "attack" -> {
                     Adventure.AttackEnum result = adventure.player.attack();
-                    // Handle the result as needed
                     switch (result) {
                         case FIRED:
                             System.out.println("You fired your ranged weapon.");
