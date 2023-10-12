@@ -20,15 +20,6 @@ public class Player {
         return currentHealth += healthPoints;
     }
 
-
-    public Weapon getCurrentWeapon() {
-        return currentWeapon;
-    }
-
-    public void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
-    }
-
     private int currentHealth = 100;
 
     public void setPlayerPostion(Room playerPostion) {
