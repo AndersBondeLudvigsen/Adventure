@@ -1,13 +1,13 @@
 public class Enemy {
     private String enemyName;
-    private String enemtdDcription;
+    private String enemyDescription;
     private int enemyHealth;
     private Weapon enemyWeapon;
 
 
-    public Enemy(String enemyName, String enemyDecription, int enemyHealth, Weapon enemyWeapon) {
+    public Enemy(String enemyName, String enemyDescription, int enemyHealth, Weapon enemyWeapon) {
         this.enemyName = enemyName;
-        this.enemtdDcription = enemyDecription;
+        this.enemyDescription = enemyDescription;
         this.enemyWeapon = enemyWeapon;
         this.enemyHealth = enemyHealth;
 
@@ -17,8 +17,8 @@ public class Enemy {
         return enemyName;
     }
 
-    public String getDecription() {
-        return enemtdDcription;
+    public String getEnemyDescription() {
+        return enemyDescription;
     }
 
     public int getHealth() {
@@ -34,8 +34,8 @@ public class Enemy {
         this.enemyName = enemyName;
     }
 
-    public void setDecription(String decription) {
-        this.enemtdDcription = enemtdDcription;
+    public void setEnemyDescription(String description) {
+        this.enemyDescription = enemyDescription;
     }
 
     public void setWeapon(Weapon weapon) {
