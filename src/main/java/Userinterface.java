@@ -62,7 +62,8 @@ public class Userinterface {
                 case "look", "look around" -> look();
                 case "eat" -> {
                     System.out.print("What food would you like to eat: ");
-                    System.out.println(adventure.getFoodItems());
+                    //Printer listen af items som er food
+                    System.out.println(adventure.player.getFoodItems());
                     String foodName = keyboard.nextLine().toLowerCase();
                     Adventure.Eatable eatable = adventure.player.EAT(foodName);
                     switch (eatable) {

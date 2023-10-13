@@ -8,6 +8,7 @@ public class Player {
         return inventoryList;
     }
 
+
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
     private Room playerPostion;
@@ -126,27 +127,40 @@ public class Player {
     private ArrayList<Item> getInventory() {
         return inventoryList;
     }
+    public ArrayList<Food> getFoodItems() {
+        ArrayList<Food> foodItems = new ArrayList<>();
+
+        for (Item item : getInventoryList()) {
+            if (item instanceof Food) {
+                foodItems.add((Food) item);
+            }
+        }
+
+        return foodItems;
+    }
+
+
+
 
     public Adventure.Eatable EAT(String foodName) {
         Item found = null;
         for (Item item : inventoryList) {
-            if (item.getItemName().toLowerCase().toLowerCase().equals(foodName)) {
+            if (item.getItemName().toLowerCase().equals(foodName)) {
                 found = item;
-                break; // Exit the loop once you find a matching item
+                break; // hopper ud af loop så den ikke kigger alle items i rummet igennem
             }
         }
-
         if (found != null) {
             if (found instanceof Food) {
                 System.out.println(found.getItemName() + " has been eaten");
                 inventoryList.remove(found);
                 currentHealth += ((Food) found).getHealth();
-                return Adventure.Eatable.CAN_EAT; // If it's Food
+                return Adventure.Eatable.CAN_EAT; // Hvis det er mad du prøver at spise
             } else {
-                return Adventure.Eatable.CANNOT_EAT; // If it's not food
+                return Adventure.Eatable.CANNOT_EAT; // Hvis du prøver at spise en item eller weapon
             }
         } else {
-            return Adventure.Eatable.NOT_IN_INVENTORY; // If the item is not in the inventory
+            return Adventure.Eatable.NOT_IN_INVENTORY; // Hvis du ikke har det du prøver at spise i dit inventory
         }
     }
 

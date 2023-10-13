@@ -103,18 +103,7 @@ public class Adventure {
     public void pickUpItem2(){
         player.pickUpItem2(map.getCurrentRoom());
     }
-    public ArrayList<Food> getFoodItems() {
-        ArrayList<Food> foodItems = new ArrayList<>();
-
-        for (Item item : player.getInventoryList()) {
-            if (item instanceof Food) {
-                foodItems.add((Food) item);
-            }
-        }
-
-        return foodItems;
-    }
-
+    
     public enum Eatable {
         CAN_EAT,
         CANNOT_EAT,
