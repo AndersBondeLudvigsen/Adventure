@@ -120,6 +120,7 @@ public class Userinterface {
         System.out.println("Type exit to exit the game");
         System.out.println("Type 'inventory' to see your items");
         System.out.println("Type 'eat' if you have food in your inventory");
+        System.out.println("");
     }
 
 
