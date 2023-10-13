@@ -1,7 +1,7 @@
 public class MeleeWeapon extends Weapon {
     private int ammunition;
-    public MeleeWeapon(String itemName, String itemDecription, int damage) {
-        super(itemName, itemDecription, damage);
+    public MeleeWeapon(String itemName, String itemDescription, int damage) {
+        super(itemName, itemDescription, damage);
     }
     public Adventure.AttackEnum attack(){
         return Adventure.AttackEnum.MELEE;

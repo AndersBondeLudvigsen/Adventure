@@ -19,7 +19,7 @@ public class Adventure {
             }
             ArrayList<Enemy> enemyArrayList = map.getCurrentRoom().getEnemyArrayList();
             for (Enemy enemy : enemyArrayList) {
-                System.out.println(enemy.getName() + " : " + enemy.getDecription());
+                System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
                 player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");
@@ -85,7 +85,7 @@ public class Adventure {
             }
             ArrayList<Enemy> enemyArrayList = map.getCurrentRoom().getEnemyArrayList();
             for (Enemy enemy : enemyArrayList) {
-                System.out.println(enemy.getName() + " : " + enemy.getDecription());
+                System.out.println(enemy.getName() + " : " + enemy.getDescription());
             }
                 player.setPlayerPosition(map.getCurrentRoom());
                 System.out.println("Awaiting your command");

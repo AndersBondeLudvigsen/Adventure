@@ -6,8 +6,8 @@ public abstract class Weapon extends Item {
         return damage;
     }
 
-    public Weapon(String itemName, String itemDecription, int damage) {
-        super(itemName, itemDecription);
+    public Weapon(String itemName, String itemDescription, int damage) {
+        super(itemName, itemDescription);
         this.damage = damage;
     }
     public int getAmmunition() {

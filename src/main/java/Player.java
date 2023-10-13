@@ -11,7 +11,7 @@ public class Player {
 
     private ArrayList<Item> inventoryList = new ArrayList<>();
     private Scanner keyboard = new Scanner(System.in);
-    private Room playerPostion;
+    private Room playerPosition;
     private Weapon currentWeapon;
     private boolean exit;
 
@@ -23,8 +23,8 @@ public class Player {
 
     private int currentHealth = 100;
 
-    public void setPlayerPostion(Room playerPostion) {
-        this.playerPostion = playerPostion;
+    public void setPlayerPosition(Room playerPosition) {
+        this.playerPosition = playerPosition;
     }
 
     public int getCurrentHealth() {
@@ -186,15 +186,15 @@ public class Player {
     }
 
     public Adventure.AttackEnum attack() {
-        Enemy attackEnemy = playerPostion.getEnemyArrayList().isEmpty() ? null : playerPostion.getEnemyArrayList().get(0);
-        Adventure.AttackEnum status = Adventure.AttackEnum.NONE;
+        Enemy attackEnemy = playerPosition.getEnemyArrayList().isEmpty() ? null : playerPosition.getEnemyArrayList().get(0);
+        Adventure.AttackEnum status = Adventure.AttackEnum.NO_WEAPON_EQUIPED;
         exit = false;
         if (attackEnemy == null) {
             return Adventure.AttackEnum.NO_ENEMY_IN_ROOM;
         }
 
         if (currentWeapon != null) {
-            // Equiped weapon
+            // Equipped weapon
             if (currentWeapon instanceof RangedWeapon) {
                 if (currentWeapon.getAmmunition() > 0) {
                     Adventure.AttackEnum ammoStatus = currentWeapon.attack();
@@ -207,44 +207,25 @@ public class Player {
                         status = Adventure.AttackEnum.NO_AMMO;
                     }
                 }
-                    if (attackEnemy != null) {
-                        attackEnemy.setHealth(playerPostion.getEnemy().getHealth());
-                        updateHealth(enemyAttack());
-                        enemy.enemyAttackPlayer();
-                        if (attackEnemy.enemyDead()) {
-                            playerPostion.removeEnemy(attackEnemy);
-                            attackEnemy.dropEnemyWeapon(playerPostion);
-                            return Adventure.AttackEnum.ENEMY_DEAD;
-                        }
-                        Adventure.AttackEnum weaponAttackResult = currentWeapon.attack();
-                        if (weaponAttackResult != null) {
-                            return weaponAttackResult;
-                        }
-                    } else if (currentWeapon instanceof MeleeWeapon) {
-                        return Adventure.AttackEnum.MELEE;
-                    }
-                        if (attackEnemy != null) {
-                            attackEnemy.setHealth(playerPostion.getEnemy().getHealth());
-                            updateHealth(enemyAttack());
-                            enemy.enemyAttackPlayer();
-                            if (attackEnemy.enemyDead()) {
-                                playerPostion.removeEnemy(attackEnemy);
-                                attackEnemy.dropEnemyWeapon(playerPostion);
-                                return Adventure.AttackEnum.ENEMY_DEAD;
-                            }
-                        } else if (currentWeapon != null) {
-                            if (currentWeapon instanceof RangedWeapon) {
-                                if (currentWeapon.getAmmunition() < 1)
-                                    return Adventure.AttackEnum.NO_AMMO;
-                            }
-                        }
+            } else if (currentWeapon instanceof MeleeWeapon) {
 
-                    } else {
-                        return Adventure.AttackEnum.NO_WEAPON_EQUIPED;
-                    }
-                }
-        return Adventure.AttackEnum.NO_WEAPON_EQUIPED;
+                currentHealth -= attackEnemy.getWeapon().getDamage();
+                attackEnemy.setHealth(attackEnemy.getHealth() - currentWeapon.getDamage());
+                status = Adventure.AttackEnum.MELEE;
             }
+            System.out.println("Your health is now " + currentHealth);
+            System.out.println("Enemy's health is now " + attackEnemy.getHealth());
+        }
+        if (attackEnemy.enemyDead()) {
+            playerPosition.removeEnemy(attackEnemy);
+            attackEnemy.dropEnemyWeapon(playerPosition);
+            status = Adventure.AttackEnum.ENEMY_DEAD;
+        } else if (currentHealth <=0) { exit = true;
+        }
+        return status;
+    }
+}
+
 
 
 

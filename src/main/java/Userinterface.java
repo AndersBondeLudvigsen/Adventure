@@ -123,7 +123,7 @@ public class Userinterface {
     }
 
 
-    // look funtionen
+    // look funktionen
     public void look() {
         System.out.println("You are standing in " + adventure.map.getCurrentRoom() + adventure.map.currentRoom.getDescription());
         System.out.println("items in room " + adventure.map.getCurrentRoom().getItems());

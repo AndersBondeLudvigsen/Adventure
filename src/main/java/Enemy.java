@@ -17,7 +17,7 @@ public class Enemy {
         return enemyName;
     }
 
-    public String getEnemyDescription() {
+    public String getDescription() {
         return enemyDescription;
     }
 
@@ -30,17 +30,6 @@ public class Enemy {
         return enemyWeapon;
     }
 
-    public void setName(String name) {
-        this.enemyName = enemyName;
-    }
-
-    public void setEnemyDescription(String description) {
-        this.enemyDescription = enemyDescription;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.enemyWeapon = enemyWeapon;
-    }
     public void setHealth(int health){
         this.enemyHealth = health;
     }
